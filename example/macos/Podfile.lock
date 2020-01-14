@@ -1,0 +1,22 @@
+PODS:
+  - ai_blue_tooth_print (0.0.1):
+    - FlutterMacOS
+  - FlutterMacOS (1.0.0)
+
+DEPENDENCIES:
+  - ai_blue_tooth_print (from `Flutter/ephemeral/.symlinks/plugins/ai_blue_tooth_print/macos`)
+  - FlutterMacOS (from `Flutter/ephemeral/.symlinks/flutter/darwin-x64-release`)
+
+EXTERNAL SOURCES:
+  ai_blue_tooth_print:
+    :path: Flutter/ephemeral/.symlinks/plugins/ai_blue_tooth_print/macos
+  FlutterMacOS:
+    :path: Flutter/ephemeral/.symlinks/flutter/darwin-x64-release
+
+SPEC CHECKSUMS:
+  ai_blue_tooth_print: c0acc2b224c7057d5fe8743b207ab2deea298104
+  FlutterMacOS: 15bea8a44d2fa024068daa0140371c020b4b6ff9
+
+PODFILE CHECKSUM: d8ba9b3e9e93c62c74a660b46c6fcb09f03991a7
+
+COCOAPODS: 1.8.4

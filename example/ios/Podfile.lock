@@ -1,0 +1,22 @@
+PODS:
+  - ai_blue_tooth_print (0.0.1):
+    - Flutter
+  - Flutter (1.0.0)
+
+DEPENDENCIES:
+  - ai_blue_tooth_print (from `.symlinks/plugins/ai_blue_tooth_print/ios`)
+  - Flutter (from `Flutter`)
+
+EXTERNAL SOURCES:
+  ai_blue_tooth_print:
+    :path: ".symlinks/plugins/ai_blue_tooth_print/ios"
+  Flutter:
+    :path: Flutter
+
+SPEC CHECKSUMS:
+  ai_blue_tooth_print: be5555937e2bcad82fb0993866dd12a3e36da0cb
+  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+
+PODFILE CHECKSUM: 1b66dae606f75376c5f2135a8290850eeb09ae83
+
+COCOAPODS: 1.8.4
