@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.annotation.NonNull;
-import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
@@ -22,11 +21,14 @@ public class AiBlueToothPrintPlugin : FlutterPlugin, Activity(), MethodCallHandl
         val channel = MethodChannel(flutterPluginBinding.getFlutterEngine().getDartExecutor(), "ai_blue_tooth_print")
 
         var plugin = AiBlueToothPrintPlugin()
-        plugin.save(flutterPluginBinding.applicationContext)
+        plugin.setContextCallback(flutterPluginBinding.applicationContext)
         channel.setMethodCallHandler(plugin)
     }
 
-    fun save(flutterPluginBinding: Context) {
+    /**
+     * setContextCallback
+     */
+    fun setContextCallback(flutterPluginBinding: Context) {
         this.context = flutterPluginBinding;
     }
 
@@ -44,7 +46,7 @@ public class AiBlueToothPrintPlugin : FlutterPlugin, Activity(), MethodCallHandl
         fun registerWith(registrar: Registrar) {
             val channel = MethodChannel(registrar.messenger(), "ai_blue_tooth_print")
             var plugin = AiBlueToothPrintPlugin();
-            plugin.save(registrar.activity());
+            plugin.setContextCallback(registrar.activity());
             channel.setMethodCallHandler(plugin)
         }
     }
@@ -62,9 +64,9 @@ public class AiBlueToothPrintPlugin : FlutterPlugin, Activity(), MethodCallHandl
         }
     }
 
-    private fun showPrintView(printInfos: ArrayList<String>) {
+    private fun showPrintView(printInfoList: ArrayList<String>) {
         val bundle: Bundle = Bundle();
-        bundle.putStringArrayList(SearchPrintActivity.INFOLIST, printInfos);
+        bundle.putStringArrayList(SearchPrintActivity.INFOLIST, printInfoList);
         bundle.putBoolean(SearchPrintActivity.ISPRINT, true)
 
 
@@ -72,7 +74,6 @@ public class AiBlueToothPrintPlugin : FlutterPlugin, Activity(), MethodCallHandl
 
         intent.putExtras(bundle);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-//        applicationContext.startActivity(intent, 100)
         context.startActivity(intent);
     }
 

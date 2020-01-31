@@ -1,4 +1,4 @@
-# ai_blue_tooth_print
+# ai_blue_tooth_print 
 
 ![totem](https://raw.githubusercontent.com/pdliuw/pdliuw.github.io/master/images/totem_four_logo.jpg)
 
@@ -7,7 +7,7 @@
 |[English Document](https://github.com/pdliuw/ai_blue_tooth_print/blob/master/README-EN.md)|[中文文档](https://github.com/pdliuw/ai_blue_tooth_print)|
 |:-|:-|
 
-## 我们的宗旨是：帮助开发者更加便利开发、切身体会编程之美！
+## Our aim is to help developers make development more convenient and experience the beauty of programming!
 
 ### ai_blue_tooth_print:
 
@@ -15,20 +15,20 @@
 
 
 
-[ai_blue_tooth_print](https://github.com/pdliuw/ai_blue_tooth_print) 在[项目](https://github.com/flutter-app-sample/flutter_app_sample)中的实战应用[flutter sample](https://github.com/flutter-app-sample/flutter_app_sample)
+[ai_blue_tooth_print](https://github.com/pdliuw/ai_blue_tooth_print) in the[Project](https://github.com/flutter-app-sample/flutter_app_sample)Practical application[flutter sample](https://github.com/flutter-app-sample/flutter_app_sample)
 
-## 效果图
-
-
+## effect
 
 
-## 1.安装
 
-使用当前包作为依赖库
 
-### 1. 依赖此库
+## 1.Installation
 
-在文件 'pubspec.yaml' 中添加
+Use the current package as a dependent library
+
+### 1. Rely on this library
+
+Add in file 'pubspec.yaml'
 
 [![pub package](https://img.shields.io/pub/v/ai_blue_tooth_print.svg)](https://pub.dev/packages/ai_blue_tooth_print)
 
@@ -40,7 +40,7 @@ dependencies:
 
 ```
 
-或以这种方式添加
+or
 
 ```
 
@@ -51,9 +51,9 @@ dependencies:
 
 ```
 
-### 2. 安装此库
+### 2. Install this library
 
-你可以通过下面的命令行来安装此库
+You can install this library via the command line below
 
 ```
 
@@ -62,22 +62,23 @@ $ flutter pub get
 
 ```
 
-你也可以通过项目开发工具通过可视化操作来执行上述步骤
+You can also perform the above steps through the visual operation through the project development tool
 
-### 3. 导入此库
 
-现在，在你的Dart编辑代码中，你可以使用：
+### 3. Import this library
+
+Now, in your Dart editing code, you can use:
 
 ```
 
 import 'package:ai_blue_tooth_print/ai_blue_tooth_print.dart';
 
-
 ```
 
-## 2.使用
+## 2.Usage
 
-### 1.在你的项目需要打印的地方调用：
+### 1.Call where your project needs to print:
+
 
 ai_blue_tooth_print 
 
@@ -95,12 +96,10 @@ ai_blue_tooth_print
 ```
 
 
+### TODO
 
-* 更多用法[点击，查看更多](https://github.com/pdliuw/ai_blue_tooth_print/blob/master/README_DETAIL.md)
+* Support ios、macOS.
 
-### 待办
-
-* 支持： ios、macOS.
 
 
 ## LICENSE
@@ -135,4 +134,5 @@ ai_blue_tooth_print
     CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
     OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
     OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
 

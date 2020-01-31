@@ -96,8 +96,6 @@ ai_blue_tooth_print
 
 
 
-* 更多用法[点击，查看更多](https://github.com/pdliuw/ai_blue_tooth_print/blob/master/README_DETAIL.md)
-
 ### 待办
 
 * 支持： ios、macOS.

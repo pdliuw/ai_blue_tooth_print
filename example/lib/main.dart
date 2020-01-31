@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:ai_blue_tooth_print/ai_blue_tooth_print.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:ai_blue_tooth_print/ai_blue_tooth_print.dart';
 
 void main() {
   runApp(MyApp());
@@ -27,7 +26,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
           appBar: AppBar(
-            title: Text('Barcode Scanner Example'),
+            title: Text('Ai_Blue_Tooth_Print Example'),
           ),
           body: Center(
             child: Column(
@@ -46,11 +45,11 @@ class _MyAppState extends State<MyApp> {
 
   print() {
     AiBlueToothPrint.print(arrayInfo: [
-      "这是第一行数据",
-      "这是第二行数据",
-      "这是第三行数据",
-      "这是第四行数据",
-      "这是第四行数据",
+      "print data",
+      "print data",
+      "print data",
+      "print data",
+      "print data",
     ]);
   }
 
