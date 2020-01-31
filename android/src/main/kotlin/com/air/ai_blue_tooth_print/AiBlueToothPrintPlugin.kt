@@ -1,6 +1,11 @@
 package com.air.ai_blue_tooth_print
 
+import android.app.Activity
+import android.content.Context
+import android.content.Intent
+import android.os.Bundle
 import androidx.annotation.NonNull;
+import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
@@ -9,37 +14,68 @@ import io.flutter.plugin.common.MethodChannel.Result
 import io.flutter.plugin.common.PluginRegistry.Registrar
 
 /** AiBlueToothPrintPlugin */
-public class AiBlueToothPrintPlugin: FlutterPlugin, MethodCallHandler {
-  override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
-    val channel = MethodChannel(flutterPluginBinding.getFlutterEngine().getDartExecutor(), "ai_blue_tooth_print")
-    channel.setMethodCallHandler(AiBlueToothPrintPlugin());
-  }
+public class AiBlueToothPrintPlugin : FlutterPlugin, Activity(), MethodCallHandler {
 
-  // This static function is optional and equivalent to onAttachedToEngine. It supports the old
-  // pre-Flutter-1.12 Android projects. You are encouraged to continue supporting
-  // plugin registration via this function while apps migrate to use the new Android APIs
-  // post-flutter-1.12 via https://flutter.dev/go/android-project-migration.
-  //
-  // It is encouraged to share logic between onAttachedToEngine and registerWith to keep
-  // them functionally equivalent. Only one of onAttachedToEngine or registerWith will be called
-  // depending on the user's project. onAttachedToEngine or registerWith must both be defined
-  // in the same class.
-  companion object {
-    @JvmStatic
-    fun registerWith(registrar: Registrar) {
-      val channel = MethodChannel(registrar.messenger(), "ai_blue_tooth_print")
-      channel.setMethodCallHandler(AiBlueToothPrintPlugin())
+    lateinit var context: Context;
+
+    override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
+        val channel = MethodChannel(flutterPluginBinding.getFlutterEngine().getDartExecutor(), "ai_blue_tooth_print")
+
+        var plugin = AiBlueToothPrintPlugin()
+        plugin.save(flutterPluginBinding.applicationContext)
+        channel.setMethodCallHandler(plugin)
     }
-  }
 
-  override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
-    if (call.method == "getPlatformVersion") {
-      result.success("Android ${android.os.Build.VERSION.RELEASE}")
-    } else {
-      result.notImplemented()
+    fun save(flutterPluginBinding: Context) {
+        this.context = flutterPluginBinding;
     }
-  }
 
-  override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
-  }
+    // This static function is optional and equivalent to onAttachedToEngine. It supports the old
+    // pre-Flutter-1.12 Android projects. You are encouraged to continue supporting
+    // plugin registration via this function while apps migrate to use the new Android APIs
+    // post-flutter-1.12 via https://flutter.dev/go/android-project-migration.
+    //
+    // It is encouraged to share logic between onAttachedToEngine and registerWith to keep
+    // them functionally equivalent. Only one of onAttachedToEngine or registerWith will be called
+    // depending on the user's project. onAttachedToEngine or registerWith must both be defined
+    // in the same class.
+    companion object {
+        @JvmStatic
+        fun registerWith(registrar: Registrar) {
+            val channel = MethodChannel(registrar.messenger(), "ai_blue_tooth_print")
+            var plugin = AiBlueToothPrintPlugin();
+            plugin.save(registrar.activity());
+            channel.setMethodCallHandler(plugin)
+        }
+    }
+
+    override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
+        if (call.method == "getPlatformVersion") {
+            result.success("Android ${android.os.Build.VERSION.RELEASE}")
+        } else if (call.method == "search") {
+
+        } else if (call.method == "print") {
+            val arrayList: ArrayList<String> = call.argument("info")!!;
+            showPrintView(arrayList);
+        } else {
+            result.notImplemented()
+        }
+    }
+
+    private fun showPrintView(printInfos: ArrayList<String>) {
+        val bundle: Bundle = Bundle();
+        bundle.putStringArrayList(SearchPrintActivity.INFOLIST, printInfos);
+        bundle.putBoolean(SearchPrintActivity.ISPRINT, true)
+
+
+        val intent = Intent(context, SearchPrintActivity::class.java)
+
+        intent.putExtras(bundle);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+//        applicationContext.startActivity(intent, 100)
+        context.startActivity(intent);
+    }
+
+    override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
+    }
 }

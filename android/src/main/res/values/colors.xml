@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--App 全局的色值-->
+    <color name="colorPrimary">#2292f1</color>
+    <color name="colorPrimaryDark">#1671b1</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorTranslucentWhite">#00FFFFFF</color>
+    <color name="colorTranslucentGray">#99FFFFFF</color>
+    <color name="colorDarkGray">#A9A9A9</color>
+    <color name="colorLightGrey">#D3D3D3</color>
+    <color name="colorLightSecondGrey">#e4e4e4</color>
+    <color name="colorLightPink">#FFB6C1</color>
+    <color name="colorPink">#FFC0CB</color>
+    <color name="colorCrimson">#DC143C</color>
+    <color name="colorRed">#DC143C</color>
+    <color name="colorLavenderBlush">#FFF0F5</color>
+    <color name="colorPaleVioletRed">#DB7093</color>
+    <color name="colorHotPink">#FF69B4</color>
+    <color name="colorDeepPink">#FF1493</color>
+    <color name="colorMediumVioletRed">#C71585</color>
+    <color name="colorOrchid">#DA70D6</color>
+    <color name="colorThistle">#D8BFD8</color>
+    <color name="colorPlum">#DDA0DD</color>
+    <color name="colorViolet">#EE82EE</color>
+    <color name="colorMagenta">#FF00FF</color>
+    <color name="colorPurple">#8B008B</color>
+    <color name="colorMediumOrchid">#BA55D3</color>
+    <color name="colorDarkOrchid">#9932CC</color>
+    <color name="colorIndigo">#4B0082</color>
+    <color name="colorBlueViolet">#8A2BE2</color>
+    <color name="colorMediumPurple">#9370DB</color>
+    <color name="colorMediumSlateBlue">#7B68EE</color>
+    <color name="colorSlateBlue">#6A5ACD</color>
+    <color name="colorDarkSlateBlue">#483D8B</color>
+    <color name="colorLavender">#E6E6FA</color>
+    <color name="colorGhostWhite">#F8F8FF</color>
+    <color name="colorBlue">#0000FF</color>
+    <color name="colorMediumBlue">#0000CD</color>
+    <color name="colorMidnightBlue">#191970</color>
+    <color name="colorDarkBlue">#00008B</color>
+    <color name="colorNavy">#000080</color>
+    <color name="colorRoyalBlue">#4169E1</color>
+    <color name="colorCornflowerBlue">#6495ED</color>
+    <color name="colorLightSteelBlue">#B0C4DE</color>
+    <color name="colorLightSlateGray">#778899</color>
+    <color name="colorSlateGray">#708090</color>
+    <color name="colorDoderBlue">#1E90FF</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorDimGray">#696969</color>
+    <color name="textNormalColor">#999899</color>
+    <color name="colorGray">#808080</color>
+    <color name="colorDarker">#515151</color>
+    <color name="colorTransparent">#88808080</color>
+    <color name="transfer">#00000000</color>
+    <!--以下则为：根据不同的模块进行设计的色值-->
+    <!-- -->
+    <color name="textColorPrimary">#442C2E</color>
+    <color name="toolbarIconColor">@color/colorWhite</color>
+    <color name="iconColor">@color/colorPrimary</color>
+    <color name="iconFillTextColor">@color/colorWhite</color>
+    <color name="iconStrokeTextColor">@color/colorPrimary</color>
+    <color name="toolbarColor">@color/colorPrimary</color>
+    <color name="statusNewCreateColor">@color/colorPrimaryDark</color>
+    <color name="statusStartColor">@color/colorPrimary</color>
+    <color name="statusEndColor">@color/colorGray</color>
+    <color name="statusTextColor">@color/colorWhite</color>
+    <color name="statusNormalTextColor">@color/colorPrimary</color>
+    <color name="statusNormalIconColor">@color/colorPrimary</color>
+    <color name="statusAbnormalTextColor">@color/colorRed</color>
+    <color name="statusAbnormalIconColor">@color/colorRed</color>
+
+    <!--Task Distribution Component start-->
+    <color name="task_fragment_item_status_normal">#e83782c8</color>
+    <color name="task_fragment_item_status_ended">#e8bbbbbb</color>
+    <color name="task_fragment_item_status_starting">#b20000</color>
+    <color name="task_fragment_item_status_no_start">#e83782c8</color>
+    <!--Task Distribution Component end-->
+
+    <!--MyCode-->
+    <color name="mycode_info_activity_topbg">#2292f1</color>
+    <color name="mycode_info_activity_code_line">#f6f5f5</color>
+    <color name="code_list_tab">#0d79d5</color>
+
+    <!--thermometer-->
+    <color name="therm_item">#91ffffff</color>
+    <color name="colorTitle">#2292f1</color>
+    <color name="task_item_bg1">#e83782c8</color>
+    <color name="red_bg">#C50202</color>
+    <color name="therm_gray">#a3a1a1</color>
+
+    <!--print-->
+    <color name="title_ques">#7f000000</color>
+    <color name="title_print">#2b98f0</color>
+    <color name="title_recorder">#7f000000</color>
+    <color name="main_title_btn_pressed">#FF02486B</color>
+
+    <!--Sheet 调度单-->
+    <color name="sheet_card_item_bg_no_end_status">#1296db</color>
+    <color name="sheet_card_item_font_color_no_end_status">#ffffff</color>
+    <color name="sheet_card_item_bg_end_status">#dbdbdb</color>
+    <color name="sheet_card_item_font_color_end_status">#442C2E</color>
+
+    <!--countDown-->
+    <color name="countdown_gray">#77787b</color>
+    <color name="countdown_red">#f00</color>
+
+    <!--download dialog-->
+    <color name="dialog_line">#2c000000</color>
+    <color name="dialog_bg">#ffffff</color>
+    <color name="dialog_bg_press">#f0f0f0</color>
+
+    <color name="dialog_confirm">#007aff</color>
+    <color name="dialog_cancel">#f44336</color>
+
+</resources>
