@@ -17,6 +17,10 @@
       <excludeFolder url="file://$MODULE_DIR$/example/ios/.symlinks/plugins/ai_blue_tooth_print/example/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/example/ios/.symlinks/plugins/ai_blue_tooth_print/example/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/example/ios/.symlinks/plugins/ai_blue_tooth_print/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/example/ios/.symlinks/plugins/ai_blue_tooth_print/example/ios/Flutter/App.framework/flutter_assets/packages" />
+      <excludeFolder url="file://$MODULE_DIR$/example/ios/.symlinks/plugins/ai_blue_tooth_print/example/macos/Flutter/ephemeral/App.framework/Resources/flutter_assets/packages" />
+      <excludeFolder url="file://$MODULE_DIR$/example/ios/.symlinks/plugins/ai_blue_tooth_print/example/macos/Flutter/ephemeral/App.framework/Versions/A/Resources/flutter_assets/packages" />
+      <excludeFolder url="file://$MODULE_DIR$/example/ios/.symlinks/plugins/ai_blue_tooth_print/example/macos/Flutter/ephemeral/App.framework/Versions/Current/Resources/flutter_assets/packages" />
       <excludeFolder url="file://$MODULE_DIR$/example/ios/Flutter/App.framework/flutter_assets/packages" />
       <excludeFolder url="file://$MODULE_DIR$/example/macos/Flutter/ephemeral/.symlinks/plugins/ai_blue_tooth_print/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/example/macos/Flutter/ephemeral/.symlinks/plugins/ai_blue_tooth_print/.pub" />
@@ -24,6 +28,10 @@
       <excludeFolder url="file://$MODULE_DIR$/example/macos/Flutter/ephemeral/.symlinks/plugins/ai_blue_tooth_print/example/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/example/macos/Flutter/ephemeral/.symlinks/plugins/ai_blue_tooth_print/example/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/example/macos/Flutter/ephemeral/.symlinks/plugins/ai_blue_tooth_print/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/example/macos/Flutter/ephemeral/.symlinks/plugins/ai_blue_tooth_print/example/ios/Flutter/App.framework/flutter_assets/packages" />
+      <excludeFolder url="file://$MODULE_DIR$/example/macos/Flutter/ephemeral/.symlinks/plugins/ai_blue_tooth_print/example/macos/Flutter/ephemeral/App.framework/Resources/flutter_assets/packages" />
+      <excludeFolder url="file://$MODULE_DIR$/example/macos/Flutter/ephemeral/.symlinks/plugins/ai_blue_tooth_print/example/macos/Flutter/ephemeral/App.framework/Versions/A/Resources/flutter_assets/packages" />
+      <excludeFolder url="file://$MODULE_DIR$/example/macos/Flutter/ephemeral/.symlinks/plugins/ai_blue_tooth_print/example/macos/Flutter/ephemeral/App.framework/Versions/Current/Resources/flutter_assets/packages" />
       <excludeFolder url="file://$MODULE_DIR$/example/macos/Flutter/ephemeral/App.framework/Resources/flutter_assets/packages" />
       <excludeFolder url="file://$MODULE_DIR$/example/macos/Flutter/ephemeral/App.framework/Versions/A/Resources/flutter_assets/packages" />
       <excludeFolder url="file://$MODULE_DIR$/example/macos/Flutter/ephemeral/App.framework/Versions/Current/Resources/flutter_assets/packages" />
