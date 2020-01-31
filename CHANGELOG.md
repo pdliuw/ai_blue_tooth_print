@@ -1,3 +1,7 @@
+## [0.1.2]
+
+* Optimize: project structure
+
 ## [0.1.1]
 
 * Update: usage document
