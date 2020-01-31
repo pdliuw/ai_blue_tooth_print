@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 /// AiBlueToothPrint
 class AiBlueToothPrint {
   static const MethodChannel _channel =
-      const MethodChannel('ai_blue_tooth_print');
+  const MethodChannel('ai_blue_tooth_print');
 
 
   ///

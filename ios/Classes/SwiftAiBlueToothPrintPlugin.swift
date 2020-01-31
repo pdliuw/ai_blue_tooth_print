@@ -9,6 +9,11 @@ public class SwiftAiBlueToothPrintPlugin: NSObject, FlutterPlugin {
   }
 
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
-    result("iOS " + UIDevice.current.systemVersion)
+    if("print".elementsEqual(call.method)){
+        result("iOS " + UIDevice.current.systemVersion)
+    }else{
+        result("not implement");
+    }
+    
   }
 }
