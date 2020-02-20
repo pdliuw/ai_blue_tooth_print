@@ -150,13 +150,33 @@ public class SearchPrintActivity extends Activity {
         lv1.setAdapter(adapter);
         lv1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                BlueDevice blueDevice = list.get(position);
-                if (blueDevice != null) {
-                    String name = blueDevice.getName();
-                    String address = blueDevice.getAddress();
-                    connect(name, address);
-                }
+            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(SearchPrintActivity.this);
+                builder.setTitle("打印");
+                builder.setMessage("确定立即打印数据吗？");
+                builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        BlueDevice blueDevice = list.get(position);
+                        if (blueDevice != null) {
+                            String name = blueDevice.getName();
+                            String address = blueDevice.getAddress();
+                            connect(name, address);
+                        }
+                        //dismiss dialog
+                        dialogInterface.dismiss();
+                    }
+                });
+                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+                builder.show();
+
+
             }
         });
         txtLookat.setOnClickListener(new View.OnClickListener() {
@@ -546,7 +566,24 @@ public class SearchPrintActivity extends Activity {
                     button.setOnClickListener(new View.OnClickListener() {
 
                         public void onClick(View arg0) {
-                            connect(finalName, address);
+                            AlertDialog.Builder builder = new AlertDialog.Builder(SearchPrintActivity.this);
+                            builder.setTitle("打印");
+                            builder.setMessage("确定立即打印数据吗？");
+                            builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    connect(finalName, address);
+                                    dialogInterface.dismiss();
+                                }
+                            });
+                            builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.dismiss();
+                                }
+                            });
+                            builder.show();
+
                         }
                     });
                     button.getBackground().setAlpha(100);
