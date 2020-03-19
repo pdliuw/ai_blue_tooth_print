@@ -1,6 +1,6 @@
 name: ai_blue_tooth_print
 description: A new Flutter blue tooth print plugin(So far:Only support android).
-version: 0.1.4
+version: 0.1.5
 homepage: https://pdliuw.github.io/
 repository: https://github.com/pdliuw/ai_blue_tooth_print
 
@@ -12,7 +12,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  # Support web plugin
+  flutter_web_plugins:
+    sdk: flutter
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -40,6 +42,9 @@ flutter:
         pluginClass: AiBlueToothPrintPlugin
       macos:
         pluginClass: AiBlueToothPrintPlugin
+      web:
+        pluginClass: AiBlueToothPrintWebPlugin
+        fileName: ai_blue_tooth_print_web_plugin.dart
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:
