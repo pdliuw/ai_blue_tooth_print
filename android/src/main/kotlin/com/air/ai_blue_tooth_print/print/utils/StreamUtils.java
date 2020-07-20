@@ -6,11 +6,7 @@ import java.io.Closeable;
 import java.io.IOException;
 
 /**
- * 输入输出流工具类
- *
- * @author linfenliang
- * @version 1.0
- * @date 2018-01-03
+ * @author air
  */
 
 public class StreamUtils {

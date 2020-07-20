@@ -22,7 +22,7 @@ import java.util.List;
 
 
 /**
- * Created by ada on 2017/2/13.
+ * @author air
  * description: 处理从设备读取的数据
  */
 

@@ -14,7 +14,7 @@ import java.util.List;
 
 
 /**
- * Created by Administrator on 2016/5/6.
+ * @author air on 2020
  */
 public class SearchAdapter extends MyBaseAdapter<BlueDevice> {
 

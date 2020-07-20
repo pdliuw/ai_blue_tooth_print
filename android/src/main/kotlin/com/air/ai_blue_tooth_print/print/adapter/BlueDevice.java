@@ -1,7 +1,7 @@
 package com.air.ai_blue_tooth_print.print.adapter;
 
 /**
- * Created by Administrator on 2016/5/6.
+ * @author air
  */
 public class BlueDevice {
     private String name;

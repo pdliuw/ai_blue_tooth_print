@@ -8,6 +8,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Map;
 
+/**
+ * @author air
+ */
 public class SPUtils {
     public SPUtils() {
         /* cannot be instantiated */

@@ -3,13 +3,7 @@ package com.air.ai_blue_tooth_print.print.source;
 import java.io.Serializable;
 
 /**
- * Created by ada on 2017/2/17.
- * description:
- */
-/*
- *SingleChannelData
- *2017/2/1710:29
- * decription: 存储单路数据
+ * @author air
  */
 public class SingleChannelData implements Serializable {
     /**

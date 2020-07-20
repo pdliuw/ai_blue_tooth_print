@@ -7,13 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by ada on 2017/2/14.
- * description:
- */
-/*
- *EquipData
- *2017/2/1415:11
- * decription:
+ * @author air
  */
 public class EquipData implements Serializable {
     /**

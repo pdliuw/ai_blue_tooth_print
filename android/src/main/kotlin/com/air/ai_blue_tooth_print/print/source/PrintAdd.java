@@ -3,10 +3,8 @@ package com.air.ai_blue_tooth_print.print.source;
 import java.io.Serializable;
 import java.util.Date;
 
-/*
- *PrintAdd
- *2017/2/1718:50
- * decription: 打印附件内容
+/**
+ * @author air
  */
 public class PrintAdd implements Serializable {
     /**

@@ -5,13 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by ada on 2017/2/17.
- * description:
- */
-/*
- *SingleData
- *2017/2/1710:25
- * decription: 存储单条数据
+ * @author air
  */
 public class SingleData implements Serializable {
     /**

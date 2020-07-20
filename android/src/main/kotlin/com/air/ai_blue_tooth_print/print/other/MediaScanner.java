@@ -7,14 +7,7 @@ import android.net.Uri;
 import java.io.File;
 
 /**
- * 项  目 :  ImageCompress
- * 包  名 :  com.baixiaohu.imagecompress
- * 类  名 :  utils.MediaScanner
- * 作  者 :  胡庆岭
- * 时  间 :  2018/1/31 0031 上午 11:03
- * 描  述 :  ${TODO}
- *
- * @author ：
+ * @author air
  */
 
 public class MediaScanner implements MediaScannerConnection.MediaScannerConnectionClient {

@@ -9,7 +9,7 @@ import android.widget.BaseAdapter;
 import java.util.List;
 
 /**
- * Created by gaogq on 2016/1/30.
+ * @author air
  */
 public abstract class MyBaseAdapter<T> extends BaseAdapter {
     protected List<T> mData;

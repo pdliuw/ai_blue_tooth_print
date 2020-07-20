@@ -1,7 +1,7 @@
 package com.air.ai_blue_tooth_print.print.constant;
 
 /**
- * Created by ada on 2017/2/17.
+ * @author air
  * description:  存储一些常量
  */
 
