@@ -204,8 +204,8 @@ public class SearchPrintActivity extends Activity {
     }
 
     public void setPrintMode() {
-        txtTitle.setText("选择打印机");
-        txtTitle.setTextColor(Color.RED);
+        txtTitle.setText("打印");
+        txtTitle.setTextColor(Color.WHITE);
         rlTitle.setBackgroundResource(R.color.title_print);
 
         model = PRINT_DATA;
