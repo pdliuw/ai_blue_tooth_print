@@ -89,10 +89,10 @@ class _IOSState extends State<IOS> {
   _scanBluetooth() {
     AiBlueToothPrint.scanBluetoothDeviceResultCallback(
         callback: ScanBluetoothDeviceResultCallback(successCallback: (devices) {
-          setState(() {
-            _list = devices;
-          });
-        }));
+      setState(() {
+        _list = devices;
+      });
+    }));
     AiBlueToothPrint.scanBluetooth();
   }
 
