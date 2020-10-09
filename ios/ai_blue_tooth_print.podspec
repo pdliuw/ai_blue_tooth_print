@@ -15,7 +15,41 @@ A new Flutter blue tooth print plugin.
   s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*'
   s.dependency 'Flutter'
-  s.platform = :ios, '8.0'
+
+  s.platform = :ios, '9.0'
+  s.static_framework = true
+  # view(start)
+  s.dependency 'Alamofire'
+  s.dependency 'SVProgressHUD'
+  s.dependency 'SDWebImage'
+  s.dependency 'MJExtension'
+  s.dependency 'SwiftyJSON'
+  s.dependency 'MJRefresh'
+  s.dependency 'SnapKit'
+  s.dependency 'Reusable'
+  s.dependency 'HMSegmentedControl'
+  s.dependency 'IQKeyboardManagerSwift'
+  s.dependency 'Then'
+  # view(end)
+  
+  # include project framework
+  s.vendored_frameworks = '**/*.framework'
+  # include project .a
+  s.vendored_libraries = '**/*.a'
+  # ios system framework
+  s.frameworks = [
+        "PrinterSDK", "SystemConfiguration"
+  ]
+  # ios system library
+  s.libraries = [
+        
+  ]
+  # resources
+  s.resources = '*.framework/*.bundle'
+  # s.resource_bundles = {
+  #   'hanyin_printer_fluttify' => ['*.framework/*.bundle']
+  # }
+
 
   # Flutter.framework does not contain a i386 slice. Only x86_64 simulators are supported.
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'VALID_ARCHS[sdk=iphonesimulator*]' => 'x86_64' }

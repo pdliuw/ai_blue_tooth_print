@@ -1,15 +1,6 @@
-import 'dart:async';
-
-import 'package:ai_blue_tooth_print/ai_blue_tooth_print_interface.dart';
-
 ///
-/// AiBlueToothPrint
-class AiBlueToothPrint {
-  ///
-  /// print
-  static Future<String> print({
-    List<String> arrayInfo,
-  }) async {
-    return AiBlueToothPrintPlatform.instance.print(arrayInfo: arrayInfo);
-  }
-}
+/// export
+export 'package:ai_blue_tooth_print/bluetooth_device.dart';
+export 'package:ai_blue_tooth_print/bluetooth_device.dart';
+export 'package:ai_blue_tooth_print/scan_bluetooth_device_result_callback.dart';
+export 'package:ai_blue_tooth_print/src/ai_blue_tooth_print.dart';

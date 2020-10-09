@@ -1,11 +1,53 @@
 PODS:
   - ai_blue_tooth_print (0.0.1):
+    - Alamofire
     - Flutter
+    - HMSegmentedControl
+    - IQKeyboardManagerSwift
+    - MJExtension
+    - MJRefresh
+    - Reusable
+    - SDWebImage
+    - SnapKit
+    - SVProgressHUD
+    - SwiftyJSON
+    - Then
+  - Alamofire (4.9.1)
   - Flutter (1.0.0)
+  - HMSegmentedControl (1.5.6)
+  - IQKeyboardManagerSwift (6.5.6)
+  - MJExtension (3.2.2)
+  - MJRefresh (3.4.3)
+  - Reusable (4.1.1):
+    - Reusable/Storyboard (= 4.1.1)
+    - Reusable/View (= 4.1.1)
+  - Reusable/Storyboard (4.1.1)
+  - Reusable/View (4.1.1)
+  - SDWebImage (5.8.4):
+    - SDWebImage/Core (= 5.8.4)
+  - SDWebImage/Core (5.8.4)
+  - SnapKit (4.2.0)
+  - SVProgressHUD (2.2.5)
+  - SwiftyJSON (5.0.0)
+  - Then (2.7.0)
 
 DEPENDENCIES:
   - ai_blue_tooth_print (from `.symlinks/plugins/ai_blue_tooth_print/ios`)
   - Flutter (from `Flutter`)
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - HMSegmentedControl
+    - IQKeyboardManagerSwift
+    - MJExtension
+    - MJRefresh
+    - Reusable
+    - SDWebImage
+    - SnapKit
+    - SVProgressHUD
+    - SwiftyJSON
+    - Then
 
 EXTERNAL SOURCES:
   ai_blue_tooth_print:
@@ -14,8 +56,19 @@ EXTERNAL SOURCES:
     :path: Flutter
 
 SPEC CHECKSUMS:
-  ai_blue_tooth_print: be5555937e2bcad82fb0993866dd12a3e36da0cb
+  ai_blue_tooth_print: 27288ef436d20e287195e71062bd3d4278c2657b
+  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  HMSegmentedControl: 34c1f54d822d8308e7b24f5d901ec674dfa31352
+  IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
+  MJExtension: d9b9c74cbdeb724c1e9ecbb157b318276e62e876
+  MJRefresh: 53e3e3219f204425ee6d3e62e8733d3295944cd6
+  Reusable: 53a9acf5c536f229b31b5865782414b508252ddb
+  SDWebImage: cf6922231e95550934da2ada0f20f2becf2ceba9
+  SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
+  Then: acfe0be7e98221c6204e12f8161459606d5d822d
 
 PODFILE CHECKSUM: 1b66dae606f75376c5f2135a8290850eeb09ae83
 

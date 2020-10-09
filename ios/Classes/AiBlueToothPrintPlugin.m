@@ -6,6 +6,8 @@
 // is not copied when this plugin is created as a library.
 // https://forums.swift.org/t/swift-static-libraries-dont-copy-generated-objective-c-header/19816
 #import "ai_blue_tooth_print-Swift.h"
+
+#import <CoreBluetooth/CoreBluetooth.h>
 #endif
 
 @implementation AiBlueToothPrintPlugin

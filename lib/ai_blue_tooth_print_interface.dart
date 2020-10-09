@@ -1,4 +1,6 @@
 import 'package:ai_blue_tooth_print/ai_blue_tooth_print_mobile_plugin.dart';
+import 'package:ai_blue_tooth_print/bluetooth_device.dart';
+import 'package:ai_blue_tooth_print/scan_bluetooth_device_result_callback.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -27,6 +29,10 @@ abstract class AiBlueToothPrintPlatform {
   static AiBlueToothPrintPlatform get instance => _instance;
 
   MethodChannel get methodChannel => _methodChannel;
+
+  static List<BluetoothDevice> _bluetoothDeviceList = [];
+
+  ScanBluetoothDeviceResultCallback _scanBluetoothDeviceResultCallback;
 
   ///
   /// Instance update
@@ -59,4 +65,23 @@ abstract class AiBlueToothPrintPlatform {
       Duration(seconds: 1),
     ).then((value) => "");
   }
+
+  void scanBluetooth() {}
+
+  void connectBluetooth({
+    String mac,
+  }) {}
+
+  List<BluetoothDevice> get bluetoothDeviceList => _bluetoothDeviceList;
+
+  set scanBluetoothDeviceResultCallback(
+      ScanBluetoothDeviceResultCallback callback) {
+    if (callback == null) {
+      //do nothing
+    }
+    _scanBluetoothDeviceResultCallback = callback;
+  }
+
+  ScanBluetoothDeviceResultCallback get scanBluetoothDeviceResultCallback =>
+      _scanBluetoothDeviceResultCallback;
 }
