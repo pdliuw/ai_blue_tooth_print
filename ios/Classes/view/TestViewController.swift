@@ -10,7 +10,7 @@ import UIKit
 import CoreBluetooth
 
 
-class TestViewController: UIViewController, CBCentralManagerDelegate{
+class TestViewController: PDBaseViewController, CBCentralManagerDelegate{
     
     var mCentralManager:CBCentralManager?
     var mBluetoothStateButton = UIButton(type: UIButton.ButtonType.system);
@@ -68,7 +68,7 @@ class TestViewController: UIViewController, CBCentralManagerDelegate{
         
         view.addSubview(button);
         
-        addBluetoothStateView();
+//        addBluetoothStateView();
         
     }
     
@@ -88,7 +88,10 @@ class TestViewController: UIViewController, CBCentralManagerDelegate{
     
     
     @objc func connectDevice(button:UIButton){
-        print("连接蓝牙");
+        print("跳转页面");
+        navigationController?.present(PDMainViewController(), animated: true, completion: {
+            
+        });
         
         
     }
