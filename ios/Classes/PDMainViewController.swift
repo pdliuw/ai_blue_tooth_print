@@ -89,9 +89,9 @@ extension PDMainViewController : UITableViewDelegate,UITableViewDataSource {
         
         switch PDSectionIndex.init(rawValue: section)?.rawValue {
         case PDSectionIndex.device.rawValue:
-            title = "Destination Device".localized
+            title = "目标设备"
         case PDSectionIndex.command.rawValue:
-            title = "Printer Command".localized
+            title = "指令集"
         case PDSectionIndex.appendix.rawValue:
             title = "Appendix".localized
         case .none:
@@ -135,7 +135,7 @@ extension PDMainViewController : UITableViewDelegate,UITableViewDataSource {
                 if PTDispatcher.share()?.printerConnected == nil {
                     cell?.backgroundColor = UIColor(red: 0.8, green: 0.9, blue: 1.0, alpha: 1.0)
                     
-                    cell?      .textLabel!.text = "Unconnected".localized
+                    cell?      .textLabel!.text = "未连接"
                     cell?.detailTextLabel!.text = ""
                     
                     cell?      .textLabel!.textColor = UIColor.theme
@@ -188,7 +188,7 @@ extension PDMainViewController : UITableViewDelegate,UITableViewDataSource {
                 cell?.detailTextLabel!.textColor = UIColor.titleColor
                 cell?.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
             }
-            
+            //版本信息-start
             let appdixs = ["Framework Version".localized,"Compile time".localized]
             if indexPath.section == 2 {
                 
@@ -202,7 +202,7 @@ extension PDMainViewController : UITableViewDelegate,UITableViewDataSource {
                 cell?      .textLabel!.textColor = UIColor.black
                 cell?.detailTextLabel!.textColor = UIColor.black
             }
-            
+            //版本信息-end
         }
         
         return cell!
@@ -272,12 +272,37 @@ extension PDMainViewController : UITableViewDelegate,UITableViewDataSource {
 extension PDMainViewController {
     
     private func showConnectType() {
-        
-        UIAlertController.showLessActionSheet(with: "Please select a connect type".localized, actionStr1: "Bluetooth Low Energy".localized, actionStr2: "Wi-Fi".localized, actionHandle1: { (_) in
-            self.pushBleController()
-        }) { (_) in
-            self.pushWifiController()
+//        dismiss(animated: true) {
+//
+//        }
+        self.showAlert(title: "请选择一种连接方式", buttonTitles: ["蓝牙", "无线",], handler: { (selectedButtonIndex) in
+            self.selectConnectType(index: selectedButtonIndex)
+            self.navigationController?.popViewController(animated: true)
+        })
+//        navigationController?.pushViewController(PDMainViewController(), animated: true)
+//        UIAlertController.showLessActionSheet(with: "Please select a connect type".localized, actionStr1: "Bluetooth Low Energy".localized, actionStr2: "Wi-Fi".localized, actionHandle1: { (_) in
+//            self.pushBleController()
+//        }) { (_) in
+//            self.pushWifiController()
+//        }
+    }
+    func selectConnectType(index:Int){
+        switch index {
+        case 1:
+            self.pushBlueTypeController()
+        case 2:
+            self.pushWifiTypeController()
+        default:
+            //
+            print("");
         }
+    }
+    
+    private func pushBlueTypeController() {
+        self.navigationController?.pushViewController(PDBLEViewController(), animated: true)
+    }
+    private func pushWifiTypeController() {
+        navigationController?.pushViewController(PDBLEViewController(), animated: true)
     }
     
     @objc private func pushBleController() {

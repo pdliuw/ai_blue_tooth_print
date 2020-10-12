@@ -10,6 +10,8 @@ import UIKit
 
 class PDBLEViewController: PDBaseViewController {
 
+    var encoding = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(CFStringEncodings.GB_18030_2000.rawValue))
+    
     private var dataSources = [PTPrinter]()
     
     lazy var tableView : UITableView = {
@@ -32,16 +34,71 @@ class PDBLEViewController: PDBaseViewController {
         return temp
     }()
     
+    lazy var sendBtn : UIButton = {
+        let temp = UIButton.init()
+        temp.backgroundColor = UIColor.theme
+        temp.setTitle("Send".localized, for: .normal)
+        temp.setTitleColor(UIColor.white, for: .normal)
+        temp.setTitleColor(UIColor.black, for: .highlighted)
+        temp.clipsToBounds = true
+        temp.layer.cornerRadius = 10
+        temp.layer.borderColor = UIColor.theme.cgColor
+        temp.layer.borderWidth = 0.5
+        temp.addTarget(self, action: #selector(PDBLEViewController.sendDataToPeripheral), for: .touchUpInside)
+        return temp
+    }()
+    
+    lazy var bottomWidget : UIButton = {
+        let temp = UIButton.init()
+        temp.backgroundColor = UIColor.theme
+        temp.setTitle("Send".localized, for: .normal)
+        temp.setTitleColor(UIColor.white, for: .normal)
+        temp.setTitleColor(UIColor.black, for: .highlighted)
+        temp.clipsToBounds = true
+        temp.layer.cornerRadius = 10
+        temp.layer.borderColor = UIColor.theme.cgColor
+        temp.layer.borderWidth = 0.5
+        
+        return temp
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        //测试-start
+        let  item_one = UIBarButtonItem(title: "分享", style: UIBarButtonItem.Style.done, target: self, action: "itemone")
 
+                //第二种
+
+        let   item_two = UIBarButtonItem(title: "断开连接", style: UIBarButtonItem.Style.done, target: self, action: "itemone")
+
+        let  sepace  = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: self, action: nil)
+        self.navigationController?.isToolbarHidden = true
+        let  Tool_ZSJ = UIToolbar(frame: CGRect(x: 10,y: 100,width: self.view.frame.size.width-20 ,height: 100))
+
+                //再将创建的  5个按钮添加到  Tool_ZSJ 上面
+                Tool_ZSJ.setItems([item_one,sepace,item_two,sepace], animated: true)
+
+                //然后，再将工具栏添加到 主控制器的View上面
+//                self.view.addSubview(Tool_ZSJ)
+        
+        let linearLayout = UIStackView.init(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height));
+        linearLayout.axis = NSLayoutConstraint.Axis.vertical
+        linearLayout.alignment = UIStackView.Alignment.fill
+        linearLayout.addArrangedSubview(UILabel.init(frame: CGRect(x:10,y:100,width: 200,height: 200)))
+        linearLayout.addArrangedSubview(Tool_ZSJ)
+        linearLayout.addArrangedSubview(tableView)
+        linearLayout.addArrangedSubview(sendBtn)
+        //测试-end
         navigationItem.title = "BLE".localized
         
-        view.addSubview(tableView)
+//        view.addSubview(tableView)
+        view.addSubview(linearLayout)
         tableView.snp.makeConstraints {
             $0.edges.equalTo(self.view.usnp.edges)
         }
         tableView.mj_header = mj_header
+        
+//        self.view.addSubview(Tool_ZSJ)
     }
     
     @objc func loadBLE() {
@@ -64,6 +121,71 @@ class PDBLEViewController: PDBaseViewController {
             self.mj_header.endRefreshing()
             SVProgressHUD.showInfo(withStatus: "Please go to system Settings to find your APP open bluetooth permissions".localized)
         }
+    }
+    
+    //发送数据
+    @objc func sendDataToPeripheral() {
+        //打印的数据
+        let printData:String = "print data";
+        //打印的循环次数
+        let numbersCount:Int = 1;
+        //校验：是否有数据
+        if printData.isEmpty {
+            SVProgressHUD.showInfo(withStatus: NSLocalizedString("Please enter data", comment: ""))
+            return
+        }
+        SVProgressHUD.show()
+        
+        var totalData = Data.init()
+        
+//        if commandType == PTCommandType.CPCL {
+            
+            for _ in 0..<numbersCount {
+                let cpcl = PTCommandCPCL.init()
+                cpcl.encoding = self.encoding
+                cpcl.cpclLabel(withOffset: 0, hRes: PTCPCLLabelResolution.resolution200, vRes: PTCPCLLabelResolution.resolution200, height: 500, quantity: 1)
+                cpcl.cpclPageWidth(kUserDefaults.integer(forKey: PDPrintDots))
+                cpcl.cpclBox(withXPos: 10, yPos: 10, xEnd: kUserDefaults.integer(forKey: PDPrintDots) - 100, yEnd: 490, thickness: 1)
+                cpcl.cpclAutoText(withRotate: PTCPCLStyleRotation.rotation0, font: PTCPCLTextFontName.font8, fontSize: 0, x: 10, y: 10, safeHeight: 490, width: kUserDefaults.integer(forKey: PDPrintDots) - 100, lineSpacing: 10, fontScale: PTCPCLFontScale._1, text: printData)
+                //换行方便观察
+                cpcl.cpclLineFeed()
+                cpcl.cpclLineFeed()
+                if kUserDefaults.bool(forKey: PDPaperType) {
+                    cpcl.cpclForm()
+                }
+                cpcl.cpclPrint()
+                totalData.append(cpcl.cmdData as Data)
+            }
+        //发送数据
+        self.sendTotalSuccess(totalData)
+    }
+    
+    private func sendTotalSuccess(_ resultData:Data) {
+        
+//        SVProgressHUD.show(withStatus: "Sending data:".localized + "\(showCount)/" + "\(printCopiesCount)")
+        SVProgressHUD.show(withStatus: "Sending data:".localized)
+        PTDispatcher.share()?.send(resultData)
+        PTDispatcher.share()?.whenSendFailure({
+            SVProgressHUD.showError(withStatus: "Data send failed".localized)
+        })
+        
+//        PTDispatcher.share()?.whenSendProgressUpdate({
+//            SVProgressHUD.showProgress($0!.floatValue)
+//        })
+        
+        PTDispatcher.share()?.whenSendSuccess({[weak self] in
+            guard let self = self else { return }
+//            self.printCountTemp -= 1
+//            self.showCount += 1
+//            if self.printCountTemp > 0 {
+//                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + TimeInterval(self.intervalTime), execute: {
+//                    self.sendTotalSuccess(resultData)
+//                })
+//            }else {
+                SVProgressHUD.dismiss()
+                UIAlertController.showConfirmView("Tips".localized, message: "Data sent successfully".localized + ",  " +  "Total data:".localized + String.init(format: "%.2f kb, ", Double($0)/1000.0) + "Total time:".localized + String.init(format: "%.2f s,  ", $1) + "Transmission rate:".localized + String.init(format: "%.2f kb/s", Double(Double($0)/1000.0)/$1), confirmHandle: nil)
+//            }
+        })
     }
     
     override func viewWillAppear(_ animated: Bool) {
