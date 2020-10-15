@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import SwiftUI
 
 class PDBLEViewController: PDBaseViewController {
+
 
     var encoding = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(CFStringEncodings.GB_18030_2000.rawValue))
     
@@ -27,7 +29,7 @@ class PDBLEViewController: PDBaseViewController {
     
     lazy var mj_header: MJRefreshNormalHeader = {
         let temp = MJRefreshNormalHeader.init(refreshingTarget: self, refreshingAction: #selector(loadBLE))
-        temp.setTitle("Scanning nearby Bluetooth".localized, for: MJRefreshState.refreshing)
+        temp.setTitle("正在扫描周围蓝牙".localized, for: MJRefreshState.refreshing)
         temp.stateLabel?.textColor = UIColor.gray
         temp.lastUpdatedTimeLabel?.isHidden = true
         temp.activityIndicatorViewStyle = UIActivityIndicatorView.Style.gray
@@ -37,7 +39,7 @@ class PDBLEViewController: PDBaseViewController {
     lazy var sendBtn : UIButton = {
         let temp = UIButton.init()
         temp.backgroundColor = UIColor.theme
-        temp.setTitle("Send".localized, for: .normal)
+        temp.setTitle("发送", for: .normal)
         temp.setTitleColor(UIColor.white, for: .normal)
         temp.setTitleColor(UIColor.black, for: .highlighted)
         temp.clipsToBounds = true
@@ -48,32 +50,43 @@ class PDBLEViewController: PDBaseViewController {
         return temp
     }()
     
-    lazy var bottomWidget : UIButton = {
+    lazy var backButton : UIButton = {
         let temp = UIButton.init()
         temp.backgroundColor = UIColor.theme
-        temp.setTitle("Send".localized, for: .normal)
+        temp.setTitle("返回", for: .normal)
         temp.setTitleColor(UIColor.white, for: .normal)
         temp.setTitleColor(UIColor.black, for: .highlighted)
         temp.clipsToBounds = true
         temp.layer.cornerRadius = 10
         temp.layer.borderColor = UIColor.theme.cgColor
         temp.layer.borderWidth = 0.5
-        
+        temp.addTarget(self, action: #selector(PDBLEViewController.popViewController), for: .touchUpInside)
+        return temp
+    }()
+    lazy var searchButton : UIButton = {
+        let temp = UIButton.init()
+        temp.backgroundColor = UIColor.theme
+        temp.setTitle("搜索", for: .normal)
+        temp.setTitleColor(UIColor.white, for: .normal)
+        temp.setTitleColor(UIColor.black, for: .highlighted)
+        temp.clipsToBounds = true
+        temp.layer.cornerRadius = 10
+        temp.layer.borderColor = UIColor.theme.cgColor
+        temp.layer.borderWidth = 0.5
+        temp.addTarget(self, action: #selector(PDBLEViewController.loadBLE), for: .touchUpInside)
         return temp
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //测试-start
-        let  item_one = UIBarButtonItem(title: "分享", style: UIBarButtonItem.Style.done, target: self, action: "itemone")
-
-                //第二种
-
-        let   item_two = UIBarButtonItem(title: "断开连接", style: UIBarButtonItem.Style.done, target: self, action: "itemone")
+        let  item_one = UIBarButtonItem(title: "", style: UIBarButtonItem.Style.done, target: self, action: nil)
+        //第二种
+        let  item_two = UIBarButtonItem(title: "蓝牙", style: UIBarButtonItem.Style.done, target: self, action: nil)
 
         let  sepace  = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: self, action: nil)
         self.navigationController?.isToolbarHidden = true
-        let  Tool_ZSJ = UIToolbar(frame: CGRect(x: 10,y: 100,width: self.view.frame.size.width-20 ,height: 100))
+        let  Tool_ZSJ = UIToolbar(frame: CGRect(x: 10,y: 100,width: self.view.frame.size.width-20 ,height: 200))
 
                 //再将创建的  5个按钮添加到  Tool_ZSJ 上面
                 Tool_ZSJ.setItems([item_one,sepace,item_two,sepace], animated: true)
@@ -81,17 +94,33 @@ class PDBLEViewController: PDBaseViewController {
                 //然后，再将工具栏添加到 主控制器的View上面
 //                self.view.addSubview(Tool_ZSJ)
         
-        let linearLayout = UIStackView.init(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height));
+        let linearLayout = UIStackView.init(frame: self.view.frame);
         linearLayout.axis = NSLayoutConstraint.Axis.vertical
+        linearLayout.distribution = UIStackView.Distribution.fill
         linearLayout.alignment = UIStackView.Alignment.fill
-        linearLayout.addArrangedSubview(UILabel.init(frame: CGRect(x:10,y:100,width: 200,height: 200)))
-        linearLayout.addArrangedSubview(Tool_ZSJ)
-        linearLayout.addArrangedSubview(tableView)
-        linearLayout.addArrangedSubview(sendBtn)
+        
+        Tool_ZSJ.backgroundColor = .blue
+        
+        
+        
+        //bottom view
+        let bottomLinearLayout = UIStackView.init();
+        bottomLinearLayout.axis = NSLayoutConstraint.Axis.horizontal
+        bottomLinearLayout.distribution = UIStackView.Distribution.fillEqually
+        bottomLinearLayout.alignment = UIStackView.Alignment.fill
+        bottomLinearLayout.spacing = 20
+        bottomLinearLayout.addArrangedSubview(backButton)
+        bottomLinearLayout.addArrangedSubview(searchButton)
+        bottomLinearLayout.addArrangedSubview(sendBtn)
+        
+        
+//        linearLayout.addArrangedSubview(bottomLinearLayout)
         //测试-end
         navigationItem.title = "BLE".localized
         
-//        view.addSubview(tableView)
+        linearLayout.addArrangedSubview(Tool_ZSJ)
+        linearLayout.addArrangedSubview(tableView)
+        linearLayout.addArrangedSubview(bottomLinearLayout)
         view.addSubview(linearLayout)
         tableView.snp.makeConstraints {
             $0.edges.equalTo(self.view.usnp.edges)
@@ -107,6 +136,7 @@ class PDBLEViewController: PDBaseViewController {
             PTDispatcher.share()?.stopScanBluetooth()
             dataSources.removeAll()
             self.tableView.reloadData()
+            SVProgressHUD.showInfo(withStatus: "搜索中...".localized)
             PTDispatcher.share().scanBluetooth()
             PTDispatcher.share()?.whenFindAllBluetooth({ [weak self](ptArray) in
                 guard let self = self else { return }
@@ -116,10 +146,16 @@ class PDBLEViewController: PDBaseViewController {
             })
         }else if PTDispatcher.share()?.getBluetoothStatus() == PTBluetoothState.poweredOff {
             self.mj_header.endRefreshing()
-            SVProgressHUD.showInfo(withStatus: "Please turn on Bluetooth".localized)
+            SVProgressHUD.showInfo(withStatus: "请打开蓝牙".localized)
         }else {
             self.mj_header.endRefreshing()
-            SVProgressHUD.showInfo(withStatus: "Please go to system Settings to find your APP open bluetooth permissions".localized)
+            SVProgressHUD.showInfo(withStatus: "请前往系统设置中找到你的APP开启蓝牙权限".localized)
+        }
+    }
+    //back
+    @objc func popViewController() {
+        dismiss(animated: true) {
+            
         }
     }
     
@@ -131,7 +167,7 @@ class PDBLEViewController: PDBaseViewController {
         let numbersCount:Int = 1;
         //校验：是否有数据
         if printData.isEmpty {
-            SVProgressHUD.showInfo(withStatus: NSLocalizedString("Please enter data", comment: ""))
+            SVProgressHUD.showInfo(withStatus: NSLocalizedString("请填充数据", comment: ""))
             return
         }
         SVProgressHUD.show()
@@ -163,10 +199,10 @@ class PDBLEViewController: PDBaseViewController {
     private func sendTotalSuccess(_ resultData:Data) {
         
 //        SVProgressHUD.show(withStatus: "Sending data:".localized + "\(showCount)/" + "\(printCopiesCount)")
-        SVProgressHUD.show(withStatus: "Sending data:".localized)
+        SVProgressHUD.show(withStatus: "数据发送中".localized)
         PTDispatcher.share()?.send(resultData)
         PTDispatcher.share()?.whenSendFailure({
-            SVProgressHUD.showError(withStatus: "Data send failed".localized)
+            SVProgressHUD.showError(withStatus: "数据发送失败".localized)
         })
         
 //        PTDispatcher.share()?.whenSendProgressUpdate({
@@ -202,9 +238,9 @@ class PDBLEViewController: PDBaseViewController {
                 self.tableView.reloadData()
             })
         }else if PTDispatcher.share()?.getBluetoothStatus() == PTBluetoothState.poweredOff {
-            SVProgressHUD.showInfo(withStatus: "Please turn on Bluetooth".localized)
+            SVProgressHUD.showInfo(withStatus: "请打开蓝牙".localized)
         }else {
-            SVProgressHUD.showInfo(withStatus: "Please go to system Settings to find your APP open bluetooth permissions".localized)
+            SVProgressHUD.showInfo(withStatus: "请前往系统设置中找到你的APP开启蓝牙权限".localized)
         }
     }
     
@@ -242,7 +278,7 @@ extension PDBLEViewController : UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Bluetooth device nearby".localized
+        return "附近的蓝牙设备".localized
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -256,7 +292,7 @@ extension PDBLEViewController : UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        SVProgressHUD.show(withStatus: "Connecting, pls. wait".localized)
+        SVProgressHUD.show(withStatus: "连接中，请稍等".localized)
         PTDispatcher.share().connect(dataSources[indexPath.row])
         
         PTDispatcher.share().whenConnectSuccess { [weak self] in
@@ -310,7 +346,7 @@ extension UIViewController {
             }))
         }
 
-        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: { (_) in
+        alert.addAction(UIAlertAction(title: "取消", style: UIAlertAction.Style.cancel, handler: { (_) in
             kUserDefaults.set(576, forKey: PDPrintDots)
             self.navigationController?.popViewController(animated: true)
         }))
