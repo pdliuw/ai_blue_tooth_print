@@ -1,3 +1,11 @@
+## [1.0.1]
+
+* improve: something
+
+## [1.0.0]
+
+* Add: support ios platform
+
 ## [0.1.5]
 
 * Add: adapter web
