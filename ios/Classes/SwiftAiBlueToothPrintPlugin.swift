@@ -85,7 +85,9 @@ public class SwiftAiBlueToothPrintPlugin: NSObject, FlutterPlugin{
 //
 //            }
             
+            let info = arg?["info"] as! [String]
             
+            PDBLEViewController.mPrintInfoList = info
             
             //添加动画
             mainController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
@@ -95,7 +97,7 @@ public class SwiftAiBlueToothPrintPlugin: NSObject, FlutterPlugin{
             }
             
             
-            //            let info = arg?["info"] as! [String]
+            
             //            bluetoothPrint(printInfoList: info);
         }else if("disconnectBluetooth".elementsEqual(call.method)){
             //disconnectDevice();

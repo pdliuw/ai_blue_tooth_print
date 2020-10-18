@@ -10,7 +10,8 @@ import UIKit
 import SwiftUI
 
 class PDBLEViewController: PDBaseViewController {
-
+    
+    public static var mPrintInfoList = [String]()
 
     var encoding = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(CFStringEncodings.GB_18030_2000.rawValue))
     
@@ -161,12 +162,29 @@ class PDBLEViewController: PDBaseViewController {
     
     //发送数据
     @objc func sendDataToPeripheral() {
-        //打印的数据
-        let printData:String = "print data";
+        
+        
+        let alert = UIAlertController(title: "请选择需要打印的纸张类型".localized, message: nil, preferredStyle: .alert)
+        let continueAction = UIAlertAction.init(title: "连续纸".localized, style: UIAlertAction.Style.default) { (_) in
+            kUserDefaults.set(false, forKey: PDPaperType)
+            self.checkPrintData();
+        }
+        
+        let labelAction = UIAlertAction.init(title: "标签纸".localized, style: UIAlertAction.Style.default) { (_) in
+            kUserDefaults.set(true, forKey: PDPaperType)
+            self.checkPrintData();
+        }
+        alert.addAction(continueAction)
+        alert.addAction(labelAction)
+        self.present(alert, animated: true, completion: nil)
+        
+    }
+    
+    func checkPrintData(){
         //打印的循环次数
         let numbersCount:Int = 1;
         //校验：是否有数据
-        if printData.isEmpty {
+        if PDBLEViewController.mPrintInfoList.isEmpty {
             SVProgressHUD.showInfo(withStatus: NSLocalizedString("请填充数据", comment: ""))
             return
         }
@@ -179,12 +197,24 @@ class PDBLEViewController: PDBaseViewController {
             for _ in 0..<numbersCount {
                 let cpcl = PTCommandCPCL.init()
                 cpcl.encoding = self.encoding
-                cpcl.cpclLabel(withOffset: 0, hRes: PTCPCLLabelResolution.resolution200, vRes: PTCPCLLabelResolution.resolution200, height: 500, quantity: 1)
+                cpcl.cpclLabel(withOffset: 0, hRes: PTCPCLLabelResolution.resolution200, vRes: PTCPCLLabelResolution.resolution200, height: 24 * PDBLEViewController.mPrintInfoList.count + 500, quantity: 1)
                 cpcl.cpclPageWidth(kUserDefaults.integer(forKey: PDPrintDots))
-                cpcl.cpclBox(withXPos: 10, yPos: 10, xEnd: kUserDefaults.integer(forKey: PDPrintDots) - 100, yEnd: 490, thickness: 1)
-                cpcl.cpclAutoText(withRotate: PTCPCLStyleRotation.rotation0, font: PTCPCLTextFontName.font8, fontSize: 0, x: 10, y: 10, safeHeight: 490, width: kUserDefaults.integer(forKey: PDPrintDots) - 100, lineSpacing: 10, fontScale: PTCPCLFontScale._1, text: printData)
-                //换行方便观察
-                cpcl.cpclLineFeed()
+                //绘制Box
+//                cpcl.cpclBox(withXPos: 10, yPos: 10, xEnd: kUserDefaults.integer(forKey: PDPrintDots) - 100, yEnd: 490, thickness: 1)
+                //设置字体放⼤倍数
+                cpcl.cpclSetMag(withWidth: PTCPCLFontScale._1, height: PTCPCLFontScale._1)
+//                cpcl.cpclAutoText(withRotate: PTCPCLStyleRotation.rotation0, font: PTCPCLTextFontName.font8, fontSize: 0, x: 10, y: 10, safeHeight: 490, width: kUserDefaults.integer(forKey: PDPrintDots) - 100, lineSpacing: 10, fontScale: PTCPCLFontScale._1, text: printData)
+                //打印文本
+                var lineNumber:Int = 0
+                for element in PDBLEViewController.mPrintInfoList{
+                    //行数
+                    lineNumber=lineNumber+1;
+                    //文本
+                    cpcl.cpclText(withRotate: PTCPCLStyleRotation.rotation0, font: PTCPCLTextFontName.font8, fontSize: 0, x: 0, y: 24*lineNumber, text: "\(element)")
+                    cpcl.cpclLineFeed()
+                }
+
+                //换行
                 cpcl.cpclLineFeed()
                 if kUserDefaults.bool(forKey: PDPaperType) {
                     cpcl.cpclForm()
@@ -194,6 +224,7 @@ class PDBLEViewController: PDBaseViewController {
             }
         //发送数据
         self.sendTotalSuccess(totalData)
+        
     }
     
     private func sendTotalSuccess(_ resultData:Data) {

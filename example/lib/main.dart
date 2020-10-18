@@ -102,15 +102,26 @@ class _IOSState extends State<IOS> {
 
   _bluetoothPrint() {
     AiBlueToothPrint.print(arrayInfo: [
-      "print data",
-      "print data",
-      "print data",
-      "print data",
-      "print data",
-      "print data",
-      "print data",
-      "print data",
-      "print data",
+      "print data 1",
+      "print data 2",
+      "print data 3",
+      "print data 4",
+      "print data 5",
+      "print data 6",
+      "print data 7",
+      "print data 8",
+      "print data 9",
+      "print data 10",
+      "print data 11",
+      "print data 12",
+      "print data 13",
+      "print data 14",
+      "print data 15",
+      "print data 16",
+      "print data 17",
+      "print data 18",
+      "print data 19",
+      "print data 20",
     ]);
   }
 }
