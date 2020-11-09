@@ -1,3 +1,7 @@
+## [1.0.2]
+
+* improve: something
+
 ## [1.0.1]
 
 * improve: something
