@@ -66,6 +66,16 @@ abstract class AiBlueToothPrintPlatform {
     ).then((value) => "");
   }
 
+  ///
+  /// printZebra
+  Future<String> printZebra({
+    List<String> arrayInfo,
+  }) async {
+    return Future.delayed(
+      Duration(seconds: 1),
+    ).then((value) => "");
+  }
+
   void scanBluetooth() {}
 
   void connectBluetooth({

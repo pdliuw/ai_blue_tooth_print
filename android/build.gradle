@@ -44,4 +44,6 @@ dependencies {
     implementation 'commons-io:commons-io:2.4'
     implementation files('libs/printerlibs.jar')
     implementation files('libs/regoPrintLibV3.0.6a（6.2）.jar')
+    //适用于Java和Android的快速、低内存占用的汉字转拼音库。
+    implementation 'com.github.promeg:tinypinyin:2.0.3'
 }

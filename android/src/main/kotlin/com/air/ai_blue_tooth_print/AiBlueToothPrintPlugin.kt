@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.annotation.NonNull;
+import com.air.ai_blue_tooth_print.zebra.PrinterSettingActivity
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
@@ -59,6 +60,9 @@ public class AiBlueToothPrintPlugin : FlutterPlugin, Activity(), MethodCallHandl
         } else if (call.method == "print") {
             val arrayList: ArrayList<String> = call.argument("info")!!;
             showPrintView(arrayList);
+        } else if (call.method == "printZebra") {
+            val arrayListZebra: ArrayList<String> = call.argument("info")!!;
+            showPrintZebraView(arrayListZebra);
         } else {
             result.notImplemented()
         }
@@ -71,6 +75,17 @@ public class AiBlueToothPrintPlugin : FlutterPlugin, Activity(), MethodCallHandl
 
 
         val intent = Intent(context, SearchPrintActivity::class.java)
+
+        intent.putExtras(bundle);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        context.startActivity(intent);
+    }
+
+    private fun showPrintZebraView(printInfoList: ArrayList<String>) {
+        val bundle: Bundle = Bundle();
+        bundle.putStringArrayList(PrinterSettingActivity.BUNDLE_KEY_PRINT_INFO_LIST, printInfoList);
+
+        val intent = Intent(context, PrinterSettingActivity::class.java)
 
         intent.putExtras(bundle);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)

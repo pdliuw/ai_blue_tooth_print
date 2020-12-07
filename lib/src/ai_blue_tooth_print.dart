@@ -14,6 +14,14 @@ class AiBlueToothPrint {
     return AiBlueToothPrintPlatform.instance.print(arrayInfo: arrayInfo);
   }
 
+  ///
+  /// printZebra
+  static Future<String> printZebra({
+    List<String> arrayInfo,
+  }) async {
+    return AiBlueToothPrintPlatform.instance.printZebra(arrayInfo: arrayInfo);
+  }
+
   static scanBluetoothDeviceResultCallback({
     ScanBluetoothDeviceResultCallback callback,
   }) {

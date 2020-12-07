@@ -19,4 +19,12 @@ class AiBlueToothPrintWebPlugin extends AiBlueToothPrintPlatform {
       Duration(seconds: 1),
     ).then((value) => "web print is ok");
   }
+
+  @override
+  Future<String> printZebra({List<String> arrayInfo}) {
+    html.window.print();
+    return Future.delayed(
+      Duration(seconds: 1),
+    ).then((value) => "web print is ok");
+  }
 }

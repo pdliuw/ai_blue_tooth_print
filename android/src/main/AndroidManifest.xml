@@ -4,5 +4,6 @@
     <application>
         <activity android:name=".AiBlueToothPrintPlugin" />
         <activity android:name=".SearchPrintActivity" />
+        <activity android:name=".zebra.PrinterSettingActivity" />
     </application>
 </manifest>

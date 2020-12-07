@@ -42,6 +42,15 @@ class AiBlueToothPrintMobilePlugin extends AiBlueToothPrintPlatform {
   }
 
   @override
+  Future<String> printZebra({List<String> arrayInfo}) async {
+    arrayInfo = arrayInfo ?? [];
+    return await AiBlueToothPrintPlatform.instance.methodChannel
+        .invokeMethod('printZebra', {
+      "info": arrayInfo,
+    });
+  }
+
+  @override
   void scanBluetooth() {
     AiBlueToothPrintPlatform.instance.methodChannel
         .setMethodCallHandler(_handler);
