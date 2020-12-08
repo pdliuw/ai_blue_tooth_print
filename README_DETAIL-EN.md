@@ -98,7 +98,7 @@ ai_blue_tooth_print
 
 ### TODO
 
-* Support ios、macOS.
+* Support macOS.
 
 
 

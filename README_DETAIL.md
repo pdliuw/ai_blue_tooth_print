@@ -98,7 +98,7 @@ ai_blue_tooth_print
 
 ### 待办
 
-* 支持： ios、macOS.
+* 支持： macOS.
 
 
 ## LICENSE
