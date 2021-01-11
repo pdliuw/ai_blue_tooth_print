@@ -1,3 +1,7 @@
+## [1.1.0]
+
+* add: support zebra
+
 ## [1.0.2]
 
 * improve: something
