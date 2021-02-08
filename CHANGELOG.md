@@ -1,6 +1,7 @@
 ## [1.3.0]
 
-* 
+* adapter flutter = v1.22
+* improve something
 
 ## [1.2.0]
 
