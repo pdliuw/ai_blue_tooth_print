@@ -1,6 +1,6 @@
 name: ai_blue_tooth_print
-description: A new Flutter blue tooth print plugin(So far:Only support android).
-version: 1.2.0
+description: A new Flutter blue tooth print plugin(support android and iOS).
+version: 1.3.0
 homepage: https://pdliuw.github.io/
 repository: https://github.com/pdliuw/ai_blue_tooth_print
 
