@@ -1,7 +1,5 @@
-import 'package:ai_blue_tooth_print/bluetooth_device.dart';
+import 'package:ai_blue_tooth_print_interface/ai_blue_tooth_print_interface.dart';
 import 'package:flutter/services.dart';
-
-import 'ai_blue_tooth_print_interface.dart';
 
 ///
 /// AiBlueToothPrintMobilePlugin
@@ -14,17 +12,17 @@ class AiBlueToothPrintMobilePlugin extends AiBlueToothPrintPlatform {
 
     switch (method) {
       case "scanBluetoothDeviceResultStart":
-        bluetoothDeviceList.clear();
+//        bluetoothDeviceList.clear();
         break;
       case "scanBluetoothDeviceResult":
-        String name = arguments['name'];
-        String ip = arguments['ip'];
-        String mac = arguments['mac'];
-        bluetoothDeviceList
-            .add(BluetoothDevice.defaultStyle(name: name, ip: ip, mac: mac));
+//        String name = arguments['name'];
+//        String ip = arguments['ip'];
+//        String mac = arguments['mac'];
+//        bluetoothDeviceList
+//            .add(BluetoothDevice.defaultStyle(name: name, ip: ip, mac: mac));
         break;
       case "scanBluetoothDeviceResultEnd":
-        scanBluetoothDeviceResultCallback.successCallback(bluetoothDeviceList);
+//        scanBluetoothDeviceResultCallback.successCallback(bluetoothDeviceList);
         break;
       default:
     }

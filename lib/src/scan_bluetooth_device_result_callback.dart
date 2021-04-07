@@ -1,4 +1,4 @@
-import 'package:ai_blue_tooth_print/bluetooth_device.dart';
+import 'package:ai_blue_tooth_print/src/bluetooth_device.dart';
 
 typedef ScanBluetoothSuccessCallback = Function(List<BluetoothDevice> devices);
 

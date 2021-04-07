@@ -1,4 +1,3 @@
-import 'package:ai_blue_tooth_print/ai_blue_tooth_print.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -15,9 +14,5 @@ void main() {
 
   tearDown(() {
     channel.setMockMethodCallHandler(null);
-  });
-
-  test('print', () async {
-    expect(await AiBlueToothPrint.print(arrayInfo: ["one", "two"]), '42');
   });
 }
