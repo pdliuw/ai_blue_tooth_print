@@ -1,3 +1,7 @@
+## [2.0.0]
+
+* improve code
+
 ## [1.3.0]
 
 * adapter flutter = v1.22
